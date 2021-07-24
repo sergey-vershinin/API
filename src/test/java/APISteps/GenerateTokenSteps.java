@@ -10,7 +10,7 @@ import utils.apiConstants;
 
 public class GenerateTokenSteps {
 
-    static String token;
+    public static String token;
     @Given("a JWT is generated")
 
     public void a_JWT_is_generated() {

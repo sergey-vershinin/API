@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import utils.APICommonMethods;
 import utils.apiConstants;
 import utils.apiPayloadConstants;
 
@@ -26,10 +27,7 @@ public class APIWorkflowSteps {
 	@Given("a request is prepared to create an employee")
 	public void a_request_is_prepared_to_create_an_employee() {
 
-		request = given().header(apiConstants.Header_Content_type, apiConstants.Content_type)
-				.header(apiConstants.Header_Authorization, GenerateTokenSteps.token)
-				.body(apiPayloadConstants.createEmployeeBodyMoreDynamic("API", "Instructor", "Bob", "F", "1990-07-10",
-						"Employee", "Healer"));
+		APICommonMethods.createEmployeeRequest(apiPayloadConstants.createEmployeeBody());
 	}
 
 	@When("a POST call is made to create an employee")
