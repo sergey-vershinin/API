@@ -28,7 +28,8 @@ public class APIWorkflowSteps {
 
 		request = given().header(apiConstants.Header_Content_type, apiConstants.Content_type)
 				.header(apiConstants.Header_Authorization, GenerateTokenSteps.token)
-				.body(apiPayloadConstants.createEmployeePayload());
+				.body(apiPayloadConstants.createEmployeeBodyMoreDynamic("API", "Instructor", "Bob", "F", "1990-07-10",
+						"Employee", "Healer"));
 	}
 
 	@When("a POST call is made to create an employee")
@@ -93,28 +94,37 @@ public class APIWorkflowSteps {
 	public void the_retrieved_data_at_matches_the_data_used_to_create_an_employee_with_employee_id(
 			String employeeObject, String responseEmployeeID, DataTable dataTable) {
 
-		
 		List<Map<String, String>> expectedData = dataTable.asMaps(String.class, String.class);
 
 		Map<String, String> actualData = response.body().jsonPath().get(employeeObject);
-		
-		int index = 0; 
-		
-		for(Map<String, String> map : expectedData) {
-			
+
+		int index = 0;
+
+		for (Map<String, String> map : expectedData) {
+
 			Set<String> keys = map.keySet();
-			for(String key : keys) {
-				
+			for (String key : keys) {
+
 				String expectedValue = map.get(key);
 				String actualValue = actualData.get(key);
-				
+
 				Assert.assertEquals(expectedValue, actualValue);
-				
+
 			}
-			index ++;			
+			index++;
 		}
 		String empID = response.body().jsonPath().getString(responseEmployeeID);
 		Assert.assertEquals(empID, employee_id);
+	}
+
+	@Given("a request is prepared to create an employee with dynamic data {string},{string},{string},{string},{string},{string},{string}")
+	public void a_request_is_prepared_to_create_an_employee_with_dynamic_data(String firstName, String lastName,
+			String middleName, String gender, String dateOfBirth, String employeeStatus, String employeeJobTitle) {
+
+		request = given().header(apiConstants.Header_Content_type, apiConstants.Content_type)
+				.header(apiConstants.Header_Authorization, GenerateTokenSteps.token)
+				.body(apiPayloadConstants.createEmployeeBodyMoreDynamic(firstName, lastName, middleName, gender,
+						dateOfBirth, employeeStatus, employeeJobTitle));
 	}
 
 }
