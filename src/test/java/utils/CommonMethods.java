@@ -23,6 +23,11 @@ public class CommonMethods {
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (ConfigReader.getPropertyValue("browser")){
             case "chrome":
+
+              //  ChromeOptions chromeOptions = new ChromeOptions();
+            //   chromeOptions.setHeadless(true);   //headless means no browser will open
+
+
                 //System.setProperty("webdriver.chrome.driver", "src/drivers/chromedriver.exe");
                 WebDriverManager.chromedriver().setup();
                 if(ConfigReader.getPropertyValue("headless").equals("true")){

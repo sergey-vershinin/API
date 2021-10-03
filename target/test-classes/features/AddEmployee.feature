@@ -17,7 +17,7 @@ Feature: Adding employees
     And user clicks on save button option
     Then employee added successfully
 
-  @example
+  @example @smoke
   Scenario Outline: Adding employee from add employee page via feature file
     And user enters "<FirstName>" "<MiddleName>" and "<LastName>" in the application
     And user clicks on save button option
@@ -40,7 +40,7 @@ Feature: Adding employees
   @excel
   Scenario: Adding the employee from excel file
     When user adds multiple employees from excel file from "newdata" sheet and verify they are added
-  @db @regression
+  @db @regression @smoke
   Scenario: Adding employee and Database testing
     When user enters first name "Yulia123" middle name "MS" and last name "Yulia456"
     And capture employeeId
@@ -48,7 +48,7 @@ Feature: Adding employees
     Then query the HRMS database
     And verify data from frontend and backend is same
 
-    @db
+    @db @smoke
     Scenario: Add the employee and testing it from the backend
       When user enters first name "Yulia123" middle name "MS" and last name "Yulia456"
       And capture the employeeId

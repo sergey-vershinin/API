@@ -17,11 +17,11 @@ public class HardCodedExamples {
 
 	/*
 	 * NOTES:
-	 * 
+	 *
 	 * Given - Preparing the request
-	 * 
+	 *
 	 * When - making the request/making the call/hitting the endpoint
-	 * 
+	 *
 	 * Then - verification/assertions
 	 */
 
@@ -55,7 +55,7 @@ public class HardCodedExamples {
 						+ "  \"emp_job_title\": \"Healer\"\n" + "}");
 
 		/*
-		 * 
+		 *
 		 * log().all() will log and print all information being sent with the request
 		 */
 
@@ -172,19 +172,19 @@ public class HardCodedExamples {
 	public void dPutUpdateCreatedEmployee() {
 
 		/*
-		 * Update the created employee 
+		 * Update the created employee
 		 */
-			
+
 		RequestSpecification preparedRequest = given().header("Authorization", token)
-		        .header("Content-Type", "application/json").body("{\n" + "  \"employee_id\": \"" + employee_id + "\",\n"
-				+ "  \"emp_firstname\": \"syntaxUpdatedFirstName\",\n"
-				+ "  \"emp_lastname\": \"syntaxUpdatedLastName\",\n"
-				+ "  \"emp_middle_name\": \"syntaxUpdatedMiddleName\",\n" + "  \"emp_gender\": \"F\",\n"
-				+ "  \"emp_birthday\": \"2000-07-11\",\n" + "  \"emp_status\": \"Employee\",\n"
-				+ "  \"emp_job_title\": \"Cloud Consultant\"\n" + "}");
-		
+				.header("Content-Type", "application/json").body("{\n" + "  \"employee_id\": \"" + employee_id + "\",\n"
+						+ "  \"emp_firstname\": \"syntaxUpdatedFirstName\",\n"
+						+ "  \"emp_lastname\": \"syntaxUpdatedLastName\",\n"
+						+ "  \"emp_middle_name\": \"syntaxUpdatedMiddleName\",\n" + "  \"emp_gender\": \"F\",\n"
+						+ "  \"emp_birthday\": \"2000-07-11\",\n" + "  \"emp_status\": \"Employee\",\n"
+						+ "  \"emp_job_title\": \"Cloud Consultant\"\n" + "}");
+
 		Response response = preparedRequest.when().put("/updateEmployee.php");
-		
-		response.prettyPrint();	
+
+		response.prettyPrint();
 	}
 }

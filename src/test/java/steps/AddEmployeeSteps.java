@@ -108,14 +108,29 @@ public class AddEmployeeSteps extends CommonMethods {
             //assertion complete in HW
         }
     }
-
     @When("capture employeeId")
     public void capture_employee_id() {
         AddEmployeePage addEmployeePage = new AddEmployeePage();
+        GlobalVariables.empId = addEmployeePage.employeeId.getAttribute("value");
+    }
+    @When("capture the employeeId")
+    public void capture_the_employee_id() {
+        AddEmployeePage addEmployeePage = new AddEmployeePage();
       GlobalVariables.empId=addEmployeePage.employeeId.getAttribute("value");
     }
-    @Then("verify data from frontend and backend is same")
-    public void verify_data_from_frontend_and_backend_is_same() {
+        @Then("verify data from frontend and backend is same")
+        public void verify_data_from_frontend_and_backend_is_same() {
+            System.out.println(GlobalVariables.firstName+" "+GlobalVariables.middleName+" "+GlobalVariables.lastName);
+            System.out.println(GlobalVariables.tableData);
+            String firstName=GlobalVariables.tableData.get(0).get("emp_firstname");
+            String middleName=GlobalVariables.tableData.get(0).get("emp_middle_name");
+            String lastName=GlobalVariables.tableData.get(0).get("emp_lastname");
+            Assert.assertEquals(GlobalVariables.firstName,firstName);
+            Assert.assertEquals(GlobalVariables.middleName,middleName);
+            Assert.assertEquals(GlobalVariables.lastName,lastName);
+        }
+    @Then("verify the data from frontend and backend")
+    public void verify_the_data_from_frontend_and_backend() {
         System.out.println(GlobalVariables.firstName+" "+GlobalVariables.middleName+" "+GlobalVariables.lastName);
         System.out.println(GlobalVariables.tableData);
         String firstName=GlobalVariables.tableData.get(0).get("emp_firstname");
